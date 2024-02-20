@@ -1,1 +1,20 @@
-<p>channels works!</p>
+<!-- channels.component.html -->
+<div *ngFor="let channel of channels" class="card mb-3">
+    <div class="card-header">
+      <span class="fw-bold">{{ channel.nameChannel }}</span>
+      <button *ngIf="channel.deletable" class="btn btn-danger btn-sm float-end" (click)="onDeleteChannel(channel.id)">Suprimer</button>
+    </div>
+    <div class="card-body">
+      <div *ngFor="let user of channel.users" class="media">
+        <img *ngIf="user.avatar" [src]="user.avatar" alt="{{ user.name }} Avatar" class="mr-3 avatar">
+        <div class="media-body">
+          <h5 class="mt-0">{{ user.name }}</h5>
+          <div *ngFor="let post of user.posts" class="post">
+            <p class="post-message">{{ post.message }}</p>
+            <p class="post-date">{{ post.datePost | date }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

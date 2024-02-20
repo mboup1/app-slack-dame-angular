@@ -25,4 +25,8 @@ export class ChannelsComponent {
     });
   }
 
+  onDeleteChannel(id:number){
+
+  }
+
 }
