@@ -1,4 +1,4 @@
-<div *ngIf="tabChannel">
+<div *ngIf="tabChannel"  class="message-container">
   <div class="card mb-3">
     <div class="card-header">
       <span class="fw-bold fs-2">{{ tabChannel.nameChannel }}</span>
@@ -13,22 +13,24 @@
     <div class="card-body">
       <div *ngFor="let post of tabChannel.posts" class="post">
         <div class="mb-2">
-          <p class="post-message  fw-light">{{ post.message }}</p>
+          <p class="post-message fw-light">{{ post.message }}</p>
           <p class="post-date text-muted">posté le {{ post.datePost | date: 'dd MM yyyy à HH:mm' }}</p>
         </div>
         <div class="d-flex justify-content-end">
-          <!-- Bouton de modification -->
           <button class="btn btn-warning btn-sm me-2" (click)="onEditPost(post.id)">
             <i class="fas fa-edit"></i>
           </button>
-          <!-- Bouton de suppression -->
           <button class="btn btn-danger btn-sm" (click)="onDeletePost(post.id, post.message)">
             <i class="fas fa-trash"></i>
-
           </button>
         </div>
-        <hr class="my-1"> <!-- Ajoutez une ligne horizontale entre les messages -->
+        <hr class="my-1">
       </div>
     </div>
   </div>
+
+</div>
+
+<div class="card-footer col-12 fixed-bottom pb-5">
+  <app-add-post></app-add-post>
 </div>

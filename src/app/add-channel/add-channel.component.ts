@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ChannelsService } from '../services/channels.service';
-import { Channel } from '../interfaces/channel';
 import { API_BASE_URL } from '../config/config';
 import axios from 'axios';
 
@@ -13,17 +11,14 @@ import axios from 'axios';
 })
 export class AddChannelComponent {
   channelForm!: FormGroup;
-  channels: Channel[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
-    private channelService: ChannelsService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.initChannelForm();
-    this.channels = this.channelService.getChannels();
   }
 
   initChannelForm(): void {
