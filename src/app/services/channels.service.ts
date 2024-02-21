@@ -8,6 +8,11 @@ import { Channel } from '../interfaces/channel';
 })
 export class ChannelsService {
   channels: Channel[] = [];
+  channel: Channel = {
+    id: 0, nameChannel: '', deletable: false, posts: [],
+    idUser: 0
+  }; // Initialisez channel ici
+
 
   constructor() {}
 
@@ -20,9 +25,19 @@ export class ChannelsService {
         deletable: channel.deletable,
         idUser: channel.idUser,
         posts: channel.posts,
-        users: channel.users,
-        
+        user: channel.user,
+
       }));
+      // console.log(this.channels)
+    } catch (error) {
+      console.error('Error fetching JSON data:', error);
+    }
+  }
+
+  async fetchDataChannelById(id:number): Promise<void> {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/channel/${id}`);
+      this.channel = response.data
       // console.log(this.channels)
     } catch (error) {
       console.error('Error fetching JSON data:', error);
@@ -31,5 +46,9 @@ export class ChannelsService {
 
   getChannels(): Channel[] {
     return this.channels;
+  }
+
+  getChannel(): Channel {
+    return this.channel;
   }
 }

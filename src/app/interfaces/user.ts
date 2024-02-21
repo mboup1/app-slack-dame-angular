@@ -1,4 +1,4 @@
-import { Channel } from "./channel"; 
+import { Channel } from "./channel";
 import { Post } from "./post";
 
 export interface User {
@@ -8,6 +8,5 @@ export interface User {
     password: string;
     avatar: string;
     idChannel: number;
-    posts?: Post[];
-    channels?: Channel[];
+    // posts?: Post[]
 }

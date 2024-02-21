@@ -1,5 +1,5 @@
 import { Post } from "./post";
-import { User } from "./user"; 
+import { User } from "./user";
 
 export interface Channel {
     id: number;
@@ -7,6 +7,5 @@ export interface Channel {
     deletable: boolean;
     idUser: number;
     posts?: Post[];
-    users?: User[];
+    user?: User[];
   }
-  

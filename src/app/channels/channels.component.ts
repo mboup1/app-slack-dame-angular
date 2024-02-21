@@ -21,7 +21,7 @@ export class ChannelsComponent {
       this.channels = this.channelsService.getChannels();
 
       this.channels.sort((a, b) => (b.id < a.id) ? 1 : -1);
-      console.log("List channels : ", this.channels);
+      // console.log("List channels : ", this.channels);
     });
   }
 
