@@ -7,24 +7,32 @@ import { Post } from '../interfaces/post';
   providedIn: 'root'
 })
 export class PostsService {
-  // posts: Post[] = [];
-
+  posts: Post[] = [];
 
   constructor() { }
 
-  // getPostsByChannel(id: number) {
+  async fetchDataPosts(): Promise<void> {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/posts`);
+      this.posts = response.data.map((post: any) => ({
+        id: post.id,
+        message: post.message,
+        datePost: post.datePost,
+        idUser: post.idUser,
+        idChannel: post.idChannel,
 
-  //   axios
-  //     .get(`${API_BASE_URL}/posts`)
-  //     .then((response) => {
-  //       this.posts = response.data;
-  //       console.log('this.posts :', this.posts);
+      }));
+      // console.log(this.channels)
+    } catch (error) {
+      console.error('Error fetching JSON data:', error);
+    }
+  }
 
-  //     })
-  //     .catch((error) => {
-  //       console.error('erreur:', error);
-  //     });
-  // }
+  
+
+  getPosts(): Post[] {
+    return this.posts;
+  }
 
 
 }

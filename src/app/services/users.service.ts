@@ -9,8 +9,6 @@ import { Post as Channel } from '../interfaces/post';
 })
 export class UsersService {
   user: User[] = [];
-  channel: Channel[] = [];
-
 
 
   constructor() { }
@@ -31,17 +29,7 @@ export class UsersService {
       });
   }
 
-  getChannelById(id: number): void {
-    axios
-      .get(`${API_BASE_URL}/channel/${id}`)
-      .then((response) => {
-        this.channel = response.data;
-        console.log('this.channel :', this.channel);
-      })
-      .catch((error) => {
-        console.error('erreur:', error);
-      });
-  }
+
 
 
 }

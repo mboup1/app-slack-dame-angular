@@ -1,6 +1,6 @@
 <!-- sidebar.component.html -->
 
-<div class="nav flex-column nav-pills">
+<div class="nav flex-column nav-pills border p-2 rounded-1">
   <div *ngFor="let channel of channels; let i = index"
       [routerLink]="['/channels', channel.id]"
   >

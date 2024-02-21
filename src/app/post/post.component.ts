@@ -1,29 +1,26 @@
 import { Component } from '@angular/core';
 import { Channel } from '../interfaces/channel';
-import { Post } from '../interfaces/post';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChannelsService } from '../services/channels.service';
-import { UsersService } from '../services/users.service';
 import axios from 'axios';
 import { API_BASE_URL } from '../config/config';
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrl: './posts.component.css'
+  selector: 'app-post',
+  templateUrl: './post.component.html',
+  styleUrl: './post.component.css'
 })
-export class PostsComponent {
-  channels: Channel[] = [];
+export class PostComponent {
 
 
   tabChannel: Channel = {
     id: 0, nameChannel: '', deletable: false, posts: [],
     idUser: 0
-  }; // Initialisez channel ici
+  };
   constructor(
     private route: ActivatedRoute,
     private channelsService: ChannelsService,
-    private usersService: UsersService
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -32,34 +29,32 @@ export class PostsComponent {
 
       this.channelsService.fetchDataChannelById(channelId).then(() => {
         this.tabChannel = this.channelsService.getChannel();
-        console.log("Channel details: ", this.tabChannel);
       });
     });
 
-    this.channels = this.channelsService.getChannels();
   }
 
 
   getChannelById(id: number) {
-    this.usersService.getChannelById(id)
-    // this.router.navigate(['/posts']);
+    this.channelsService.getChannelById(id)
 
   }
 
   onEditChannel(channelId: number) {
-    // Implémentez ici la logique pour l'édition du canal
   }
 
 
 
   onDeleteChannel(id: number, nameChannel: string) {
+
     let conf = confirm(`Etes-vous sûr de vouloir supprimer ${nameChannel} ?`);
 
     if (conf)
       axios.delete(`${API_BASE_URL}/channel/${id}`)
         .then(() => {
-          this.channels = this.channels.filter(channel => channel.id !== id);
-          console.log("client supprimé avec succès!");
+          console.log("Canal supprimé avec succès!");
+          this.router.navigate(['/channels/1']);
+
         })
         .catch(error => {
           console.error("Erreur lors de la suppression de la client:", error);
@@ -69,12 +64,26 @@ export class PostsComponent {
 
 
 
-  onEditPost(channelId: number) {
-    // Implémentez ici la logique pour l'édition du canal
+  onDeletePost(id: number, message: string) {
+    console.log(id)
+    let conf = confirm(`Etes-vous sûr de vouloir supprimer ${message} ?`);
+
+    if (conf)
+      axios.delete(`${API_BASE_URL}/post/${id}`)
+        .then(() => {
+          console.log("Post supprimé avec succès!");
+          location.reload();
+        })
+        .catch(error => {
+          console.error("Erreur lors de la suppression de la client:", error);
+        });
   }
 
-  onDeletePost(channelId: number) {
-    // Implémentez ici la logique pour l'édition du canal
+
+
+  onEditPost(postId: number) {
   }
+
+
 
 }

@@ -8,6 +8,8 @@ import { Channel } from '../interfaces/channel';
 })
 export class ChannelsService {
   channels: Channel[] = [];
+  channelById: Channel[] = [];
+
   channel: Channel = {
     id: 0, nameChannel: '', deletable: false, posts: [],
     idUser: 0
@@ -42,6 +44,18 @@ export class ChannelsService {
     } catch (error) {
       console.error('Error fetching JSON data:', error);
     }
+  }
+
+  getChannelById(id: number): void {
+    axios
+      .get(`${API_BASE_URL}/channel/${id}`)
+      .then((response) => {
+        this.channelById = response.data;
+        console.log('this.channel :', this.channelById);
+      })
+      .catch((error) => {
+        console.error('erreur:', error);
+      });
   }
 
   getChannels(): Channel[] {
