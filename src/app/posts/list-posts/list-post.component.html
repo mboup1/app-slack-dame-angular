@@ -14,8 +14,8 @@
       <div *ngFor="let post of tabChannel.posts" class="post">
         <div class="mb-2">
           <p class="post-message fw-light">
-            <span class="post-date text-muted">
-              <span class="fw-bold">Dame</span> posté le {{ post.datePost | date: 'dd MM yyyy à HH:mm' }}
+            <span *ngFor="let currentUser  of user" class="post-date text-muted">
+              <span class="fw-bold">{{ currentUser.name }}</span> posté le {{ post.datePost | date: 'dd MM yyyy à HH:mm' }}
             </span>
           </p>
           {{ post.message }}

@@ -5,6 +5,7 @@ import { ChannelsService } from '../../channels/channel-services/channels.servic
 import axios from 'axios';
 import { API_BASE_URL } from '../../config/config';
 import { UsersService } from '../../users/user-services/users.service';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-post',
@@ -13,6 +14,8 @@ import { UsersService } from '../../users/user-services/users.service';
 })
 export class ListPostComponent {
   userName: string = '';
+  user: User[] = [];
+
 
 
   tabChannel: Channel = {
@@ -22,12 +25,12 @@ export class ListPostComponent {
   constructor(
     private route: ActivatedRoute,
     private channelsService: ChannelsService,
-    private userService: UsersService,
+    private usersService: UsersService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    console.log(this.userService.getUser(1))
+    
     this.route.params.subscribe(params => {
       const channelId = +params['id'];
 
@@ -35,6 +38,15 @@ export class ListPostComponent {
         this.tabChannel = this.channelsService.getChannel();
       });
     });
+    const userId = 1;
+
+    this.usersService.getUser(userId)
+      .then(user => {
+        this.user = [user];
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
 
   }
 
