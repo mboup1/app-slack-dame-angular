@@ -2,3 +2,13 @@
 .nav-link {
   cursor: pointer;
 }
+
+/* #sideChannel {
+  display: none;
+}
+
+@media (min-width: 992) {
+  #sideChannel {
+    display: block;
+  }
+} */

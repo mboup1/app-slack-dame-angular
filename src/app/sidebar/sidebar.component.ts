@@ -15,9 +15,8 @@ export class SidebarComponent {
   ) { }
 
   ngOnInit(): void {
-    this.channelsService.fetchData().then(() => {
+    this.channelsService.fetchData().subscribe(() => {
       this.channels = this.channelsService.getChannels();
-
     });
   }
 

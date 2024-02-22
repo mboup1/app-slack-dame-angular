@@ -52,10 +52,10 @@ export class ListPostComponent {
 
 
 
-  getChannelById(id: number) {
-    this.channelsService.getChannelById(id)
+  // getChannelById(id: number) {
+  //   this.channelsService.getChannelById(id)
 
-  }
+  // }
 
 
 
