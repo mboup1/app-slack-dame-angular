@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChannelsService } from '../../channels/channel-services/channels.service';
 import axios from 'axios';
 import { API_BASE_URL } from '../../config/config';
+import { UsersService } from '../../users/user-services/users.service';
 
 @Component({
   selector: 'app-post',
@@ -11,6 +12,7 @@ import { API_BASE_URL } from '../../config/config';
   styleUrl: './list-post.component.css'
 })
 export class ListPostComponent {
+  userName: string = '';
 
 
   tabChannel: Channel = {
@@ -20,10 +22,12 @@ export class ListPostComponent {
   constructor(
     private route: ActivatedRoute,
     private channelsService: ChannelsService,
+    private userService: UsersService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    console.log(this.userService.getUser(1))
     this.route.params.subscribe(params => {
       const channelId = +params['id'];
 
@@ -33,6 +37,7 @@ export class ListPostComponent {
     });
 
   }
+
 
 
   getChannelById(id: number) {

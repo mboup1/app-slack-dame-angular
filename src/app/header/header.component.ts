@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../interfaces/user';
+import { Router } from '@angular/router';
+import { UsersService } from '../users/user-services/users.service';
 import axios from 'axios';
 import { API_BASE_URL } from '../config/config';
 
@@ -12,9 +14,21 @@ import { API_BASE_URL } from '../config/config';
 export class HeaderComponent {
   user: User[] = [];
 
-  constructor() { }
+  constructor(
+    private usersService: UsersService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    const userId = 1;
+
+    this.usersService.getUser(userId)
+      .then(user => {
+        this.user = [user];
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
   }
 
 }

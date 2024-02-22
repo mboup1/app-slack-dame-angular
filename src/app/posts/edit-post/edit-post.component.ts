@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostsService } from '../post-services/posts.service';
 import axios from 'axios';
 import { API_BASE_URL } from '../../config/config';
 
