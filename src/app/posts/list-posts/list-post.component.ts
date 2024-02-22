@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { Channel } from '../interfaces/channel';
+import { Channel } from '../../interfaces/channel';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChannelsService } from '../services/channels.service';
+import { ChannelsService } from '../../channels/channel-services/channels.service';
 import axios from 'axios';
-import { API_BASE_URL } from '../config/config';
+import { API_BASE_URL } from '../../config/config';
 
 @Component({
   selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrl: './post.component.css'
+  templateUrl: './list-post.component.html',
+  styleUrl: './list-post.component.css'
 })
-export class PostComponent {
+export class ListPostComponent {
 
 
   tabChannel: Channel = {

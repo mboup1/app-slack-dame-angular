@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Injectable } from '@angular/core';
-import { API_BASE_URL } from '../config/config';
-import { Channel } from '../interfaces/channel';
+import { API_BASE_URL } from '../../config/config';
+import { Channel } from '../../interfaces/channel';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,10 @@ export class ChannelsService {
   channel: Channel = {
     id: 0, nameChannel: '', deletable: false, posts: [],
     idUser: 0
-  }; // Initialisez channel ici
+  };
 
 
-  constructor() {}
+  constructor() { }
 
   async fetchData(): Promise<void> {
     try {
@@ -30,17 +30,15 @@ export class ChannelsService {
         user: channel.user,
 
       }));
-      // console.log(this.channels)
     } catch (error) {
       console.error('Error fetching JSON data:', error);
     }
   }
 
-  async fetchDataChannelById(id:number): Promise<void> {
+  async fetchDataChannelById(id: number): Promise<void> {
     try {
       const response = await axios.get(`${API_BASE_URL}/channel/${id}`);
       this.channel = response.data
-      // console.log(this.channels)
     } catch (error) {
       console.error('Error fetching JSON data:', error);
     }

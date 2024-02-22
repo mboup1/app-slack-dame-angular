@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostsService } from '../services/posts.service';
+import { PostsService } from '../post-services/posts.service';
 import axios from 'axios';
-import { API_BASE_URL } from '../config/config';
+import { API_BASE_URL } from '../../config/config';
 
 @Component({
   selector: 'app-edit-post',
@@ -49,7 +49,7 @@ export class EditPostComponent {
 
 
 
-  updatePost(id: number, updatedPost: any, idChannel:number): void {
+  updatePost(id: number, updatedPost: any, idChannel: number): void {
     console.log("id :", id);
     console.log("idChannel :", idChannel);
 

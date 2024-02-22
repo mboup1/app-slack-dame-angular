@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { API_BASE_URL } from '../config/config';
-import { Post } from '../interfaces/post';
+import { API_BASE_URL } from '../../config/config';
+import { Post } from '../../interfaces/post';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class PostsService {
     }
   }
 
-  
+
 
   getPosts(): Post[] {
     return this.posts;

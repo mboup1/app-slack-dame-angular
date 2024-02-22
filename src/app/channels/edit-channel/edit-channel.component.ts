@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
-import { API_BASE_URL } from '../config/config';
+import { API_BASE_URL } from '../../config/config';
 
 @Component({
   selector: 'app-edit-channel',
@@ -23,7 +23,6 @@ export class EditChannelComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       this.channelForm.patchValue({
-        index: params['index'],
         id: params['id'],
         nameChannel: params['nameChannel'],
       });
@@ -41,8 +40,6 @@ export class EditChannelComponent implements OnInit {
 
 
   updateChannel(id: number, updatedChannel: any): void {
-    console.log("id :", id)
-    console.log("updatedChannel :", updatedChannel)
 
     axios.put(`${API_BASE_URL}/channel/${id}`, updatedChannel)
       .then(response => {

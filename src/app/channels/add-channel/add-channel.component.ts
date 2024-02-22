@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { API_BASE_URL } from '../config/config';
+import { API_BASE_URL } from '../../config/config';
 import axios from 'axios';
 
 @Component({
@@ -23,7 +23,6 @@ export class AddChannelComponent {
 
   initChannelForm(): void {
     this.channelForm = this.formBuilder.group({
-      // index: [0],
 
       nameChannel: ['', Validators.required],
     });
@@ -34,7 +33,8 @@ export class AddChannelComponent {
     axios.post(`${API_BASE_URL}/channel`, channel)
       .then(response => {
         console.log("canal créé avec succès:", response);
-        this.router.navigate(['/channels']);
+        this.router.navigate(['/channels/1']);
+
       })
       .catch(error => {
         console.error("La création a échoué:", error);

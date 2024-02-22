@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Post } from '../interfaces/post';
+import { Post } from '../../interfaces/post';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
-import { API_BASE_URL } from '../config/config';
-import { ChannelsService } from '../services/channels.service';
+import { API_BASE_URL } from '../../config/config';
+import { ChannelsService } from '../../channels/channel-services/channels.service';
 
 @Component({
   selector: 'app-add-post',
@@ -18,7 +18,7 @@ export class AddPostComponent implements OnInit {
   channelName: string = '';
 
 
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -64,11 +64,14 @@ export class AddPostComponent implements OnInit {
 
 
   createPost(post: any) {
-    console.log("createPost : ",post)
+    console.log("createPost : ", post)
     axios.post(`${API_BASE_URL}/post`, post)
       .then(response => {
         console.log("Post créé avec succès:", response);
-        this.router.navigate(['/channels', this.idChannel]);
+        this.router.navigate(['/channels', this.idChannel]).then(() => {
+          // After navigation, reset the form
+          this.initPostForm();
+        });
       })
       .catch(error => {
         console.error("La création a échoué:", error);
