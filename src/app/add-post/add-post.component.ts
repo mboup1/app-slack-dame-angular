@@ -4,6 +4,7 @@ import { Post } from '../interfaces/post';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { API_BASE_URL } from '../config/config';
+import { ChannelsService } from '../services/channels.service';
 
 @Component({
   selector: 'app-add-post',
@@ -14,12 +15,15 @@ export class AddPostComponent implements OnInit {
   postForm!: FormGroup;
   posts: Post[] = [];
   idChannel!: number;
+  channelName: string = '';
+
 
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute  // Injecter ActivatedRoute ici
+    private route: ActivatedRoute,
+    private channelsService: ChannelsService
 
   ) { }
 
@@ -30,7 +34,11 @@ export class AddPostComponent implements OnInit {
       this.idChannel = +params['id'];
       this.postForm.get('idChannel')?.setValue(this.idChannel);
 
-      console.log("idChannel", this.idChannel)
+      console.log("idChannel", this.idChannel);
+
+      this.getChannelName();
+
+
     });
   }
 
@@ -41,6 +49,19 @@ export class AddPostComponent implements OnInit {
       idChannel: ['', Validators.required],
     });
   }
+
+
+  getChannelName(): void {
+    this.channelsService.fetchDataChannelById(this.idChannel)
+      .then(() => {
+        this.channelName = this.channelsService.getChannel().nameChannel;
+        // console.log("this.channelName : ", this.channelName)
+      })
+      .catch(error => {
+        console.error('Error fetching channel data:', error);
+      });
+  }
+
 
   createPost(post: any) {
     console.log("createPost : ",post)
@@ -53,6 +74,8 @@ export class AddPostComponent implements OnInit {
         console.error("La création a échoué:", error);
       });
   }
+
+
 
 
 }
