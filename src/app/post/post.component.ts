@@ -40,9 +40,6 @@ export class PostComponent {
 
   }
 
-  onEditChannel(channelId: number) {
-  }
-
 
 
   onDeleteChannel(id: number, nameChannel: string) {
@@ -78,12 +75,6 @@ export class PostComponent {
           console.error("Erreur lors de la suppression de la client:", error);
         });
   }
-
-
-
-  onEditPost(postId: number) {
-  }
-
 
 
 }

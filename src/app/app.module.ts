@@ -12,6 +12,7 @@ import { AddChannelComponent } from './add-channel/add-channel.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditChannelComponent } from './edit-channel/edit-channel.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AddPostComponent } from './add-post/add-post.component';
     SidebarComponent,
     AddChannelComponent,
     EditChannelComponent,
-    AddPostComponent
+    AddPostComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,

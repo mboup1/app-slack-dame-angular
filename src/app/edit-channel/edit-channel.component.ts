@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChannelsService } from '../services/channels.service';
 import axios from 'axios';
 import { API_BASE_URL } from '../config/config';
 
@@ -15,7 +14,6 @@ export class EditChannelComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private channelService: ChannelsService,
     private router: Router,
     private route: ActivatedRoute
   ) { }

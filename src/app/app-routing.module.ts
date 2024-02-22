@@ -8,12 +8,14 @@ import { PostComponent } from './post/post.component';
 import { AddChannelComponent } from './add-channel/add-channel.component';
 import { EditChannelComponent } from './edit-channel/edit-channel.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 const routes: Routes = [
   // { path: 'channels', component: ChannelsComponent },
   { path: 'addChannel', component: AddChannelComponent },
   { path: 'updateChannel', component: EditChannelComponent },
   { path: 'addPost', component: AddPostComponent },
+  { path: 'editPost', component: EditPostComponent },
   { path: 'header', component: HeaderComponent },
   { path: 'posts', component: PostComponent },
   { path: 'channels/:id', component: PostComponent },

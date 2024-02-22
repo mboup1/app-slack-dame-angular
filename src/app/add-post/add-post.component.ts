@@ -18,7 +18,7 @@ export class AddPostComponent implements OnInit {
   channelName: string = '';
 
 
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -34,7 +34,7 @@ export class AddPostComponent implements OnInit {
       this.idChannel = +params['id'];
       this.postForm.get('idChannel')?.setValue(this.idChannel);
 
-      console.log("idChannel", this.idChannel);
+      // console.log("idChannel", this.idChannel);
 
       this.getChannelName();
 

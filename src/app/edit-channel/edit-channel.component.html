@@ -5,8 +5,8 @@
       <hr class="bg-dark mb-5" />
       <form [formGroup]="channelForm" (ngSubmit)="updateChannel(channelForm.value.id, channelForm.value)">
 
-        <input type="text" formControlName="id" hidden />
-        
+        <input type="number" formControlName="id" hidden />
+
         <div class="form-group mb-3">
           <label for="channelNameInput">Nom du canal</label>
           <input type="text" id="channelNameInput" class="form-control" formControlName="nameChannel" />
